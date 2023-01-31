@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('api/v1')->group(function(){
+    Route::apiResource('lesson', \App\Http\Controllers\Api\LessonController::class);
+});
+
+Route::resource('lesson', \App\Http\Controllers\WebLessonController::class);
