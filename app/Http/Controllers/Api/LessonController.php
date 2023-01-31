@@ -10,7 +10,7 @@ class LessonController extends Controller
 {
     public function index()
     {
-        //
+        return Lesson::all();
     }
 
     public function store(Request $request)

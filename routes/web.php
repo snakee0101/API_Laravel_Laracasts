@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('api/v1')->group(function(){
+Route::prefix('api/v1')->name('api.v1.')->group(function(){
     Route::apiResource('lesson', \App\Http\Controllers\Api\LessonController::class);
 });
 
