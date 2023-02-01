@@ -18,9 +18,22 @@ class LessonController extends Controller
         //
     }
 
-    public function show(Lesson $lesson)
+    public function show($id)
     {
-        //
+        $lesson = Lesson::find($id);
+
+        if (!$lesson)
+        {
+            return response()->json([
+                'error' => [
+                    'message' => 'Lesson does not exist'
+                ]
+            ], status: 404);
+        }
+
+        return [
+            'data' => $lesson
+        ];
     }
 
     public function update(Request $request, Lesson $lesson)
