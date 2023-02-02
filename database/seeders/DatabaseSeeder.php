@@ -12,6 +12,6 @@ class DatabaseSeeder extends Seeder
     {
         Lesson::truncate();
 
-        $this->call([ LessonsTableSeeder::class ]);
+        $this->call([ LessonsTableSeeder::class, TagsTableSeeder::class]);
     }
 }
