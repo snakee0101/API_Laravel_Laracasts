@@ -7,6 +7,7 @@ use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
 use App\Responses\LessonResponses;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LessonController extends Controller
 {
@@ -28,7 +29,7 @@ class LessonController extends Controller
             $request->only('title', 'body')
         );
 
-        return $this->lesson_responses->setStatusCode(201)
+        return $this->lesson_responses->setStatusCode(Response::HTTP_CREATED)
                                       ->message('Lesson successfully created');
     }
 
