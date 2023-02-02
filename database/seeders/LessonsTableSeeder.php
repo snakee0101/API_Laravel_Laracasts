@@ -25,7 +25,6 @@ class LessonsTableSeeder extends Seeder
             Lesson::create([
                 'title' => $this->faker->sentence,
                 'body' => $this->faker->paragraph,
-                'some_boolean' => $this->faker->boolean
             ]);
         }
     }

@@ -7,6 +7,7 @@ use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
 use App\Responses\LessonResponses;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LessonController extends Controller
 {
@@ -22,7 +23,14 @@ class LessonController extends Controller
 
     public function store(Request $request)
     {
-        //
+        //TODO: ADD API AUTHENTICATION
+
+        Lesson::create(
+            $request->only('title', 'body')
+        );
+
+        return $this->lesson_responses->setStatusCode(Response::HTTP_CREATED)
+                                      ->message('Lesson successfully created');
     }
 
     public function show($id)

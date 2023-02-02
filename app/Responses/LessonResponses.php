@@ -5,10 +5,18 @@ namespace App\Responses;
 use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class LessonResponses
 {
     private $statusCode;
+
+    public function message($message)
+    {
+        return response()->json( [
+            'message' => $message
+        ], $this->statusCode );
+    }
 
     private function respond($data)
     {
@@ -26,7 +34,7 @@ class LessonResponses
         ], status: $this->statusCode);
     }
 
-    private function setStatusCode($code) :static
+    public function setStatusCode($code) :static
     {
         $this->statusCode = $code;
 
@@ -35,7 +43,7 @@ class LessonResponses
 
     public function notFound($message = null) :JsonResponse
     {
-        return $this->setStatusCode(404)
+        return $this->setStatusCode(Response::HTTP_NOT_FOUND)
                     ->respondWithError('Lesson does not exist');
     }
 
