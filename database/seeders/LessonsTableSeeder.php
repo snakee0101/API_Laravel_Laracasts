@@ -3,29 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Lesson;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tag;
+use Database\Factories\TagFactory;
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Testing\WithFaker;
 
 class LessonsTableSeeder extends Seeder
 {
-    use WithFaker;
-
-    protected $faker;
-
-    public function __construct()
-    {
-        $this->faker = \Faker\Factory::create();
-    }
-
     public function run()
     {
-        foreach (range(1,30) as $index)
-        {
-            Lesson::create([
-                'title' => $this->faker->sentence,
-                'body' => $this->faker->paragraph,
-            ]);
-        }
+        Lesson::factory()->hasAttached( Tag::factory()->count(3) )
+                         ->count(30)
+                         ->create();
     }
 }
