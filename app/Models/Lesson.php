@@ -12,7 +12,6 @@ class Lesson extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'some_boolean' => 'boolean',
         'created_at' => 'date:Y-m-d',
         'updated_at' => 'date:Y-m-d',
     ];

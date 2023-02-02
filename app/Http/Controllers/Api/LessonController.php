@@ -22,7 +22,14 @@ class LessonController extends Controller
 
     public function store(Request $request)
     {
-        //
+        //TODO: ADD API AUTHENTICATION
+
+        Lesson::create(
+            $request->only('title', 'body')
+        );
+
+        return $this->lesson_responses->setStatusCode(201)
+                                      ->message('Lesson successfully created');
     }
 
     public function show($id)
