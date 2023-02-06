@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WebLessonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('lesson', \App\Http\Controllers\WebLessonController::class);
+Route::resource('lesson', WebLessonController::class);
 
 Route::view('/register', 'register_form');
-Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
-//login
-//logout
+Route::view('/login', 'login_form');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/logout', [AuthController::class, 'logout']);

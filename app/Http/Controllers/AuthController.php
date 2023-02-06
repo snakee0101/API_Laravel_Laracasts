@@ -20,4 +20,19 @@ class AuthController extends Controller
 
         return redirect('/register');
     }
+
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (Hash::check($request->input('password'), $user->password) )
+            auth()->login($user);
+
+        return redirect('/login');
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+    }
 }
