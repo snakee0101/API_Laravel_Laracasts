@@ -53,8 +53,21 @@ class LessonController extends Controller
         //
     }
 
-    public function destroy(Lesson $lesson)
+    /**
+     * User could delete lessons only that belong to is
+     * */
+    public function destroy(Lesson $lesson, Request $request)
     {
-        //
+        if($request->user()->lessons()
+                        ->where('lessons.id', $lesson->id)->exists())
+        {
+            $lesson->delete();
+
+            return [
+                'message' => 'Lesson is successfully deleted'
+            ];
+        }
+
+        return $this->lesson_responses->setStatusCode(403)->respondWithError('You have no right to delete this lesson');
     }
 }

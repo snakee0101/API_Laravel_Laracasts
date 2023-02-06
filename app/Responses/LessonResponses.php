@@ -25,7 +25,7 @@ class LessonResponses
         ], $this->statusCode);
     }
 
-    private function respondWithError($message)
+    public function respondWithError($message)
     {
         return response()->json([
             'error' => [
@@ -34,7 +34,7 @@ class LessonResponses
         ], status: $this->statusCode);
     }
 
-    public function setStatusCode($code) :static
+    public function setStatusCode($code)
     {
         $this->statusCode = $code;
 
