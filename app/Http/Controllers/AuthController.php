@@ -35,4 +35,16 @@ class AuthController extends Controller
     {
         auth()->logout();
     }
+
+    /**
+     * Create new API token for current user
+     * */
+    public function token()
+    {
+        auth()->user()->tokens()->delete();
+
+        $token = auth()->user()->createToken('api token');
+
+        return ['token' => $token->plainTextToken];
+    }
 }

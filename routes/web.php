@@ -28,3 +28,5 @@ Route::view('/login', 'login_form');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/token', [AuthController::class, 'token']);
