@@ -14,6 +14,8 @@ class LessonController extends Controller
     public function __construct(private LessonResponses $lesson_responses)
     {
         $this->lesson_responses = new LessonResponses();
+
+        $this->middleware('auth:sanctum')->only('store', 'update', 'destroy');
     }
 
     public function index()
@@ -21,11 +23,12 @@ class LessonController extends Controller
         return LessonResource::collection( Lesson::paginate() );
     }
 
+    /**
+     * Create a lesson and attach it to current user
+     * */
     public function store(Request $request)
     {
-        //TODO: ADD API AUTHENTICATION
-
-        Lesson::create(
+        $request->user()->lessons()->create(
             $request->only('title', 'body')
         );
 
