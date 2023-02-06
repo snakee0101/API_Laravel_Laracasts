@@ -18,3 +18,9 @@ Route::get('/', function () {
 });
 
 Route::resource('lesson', \App\Http\Controllers\WebLessonController::class);
+
+Route::view('/register', 'register_form');
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+
+//login
+//logout
