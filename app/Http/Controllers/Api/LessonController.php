@@ -18,7 +18,7 @@ class LessonController extends Controller
 
     public function index()
     {
-        return Lesson::all();
+        return LessonResource::collection( Lesson::paginate() );
     }
 
     public function store(Request $request)
