@@ -21,4 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/v1')->name('api.v1.')->group(function(){
     Route::apiResource('lesson', \App\Http\Controllers\Api\LessonController::class);
     Route::apiResource('lesson.tags', \App\Http\Controllers\Api\TagController::class)->shallow();
+
+
+    Route::post('/file', function(Illuminate\Http\Request $request) {
+        var_dump( $request->file('thumbnail') );
+    });
 });

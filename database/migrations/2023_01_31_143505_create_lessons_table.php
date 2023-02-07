@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('body');
             $table->foreignId('user_id');
+            $table->string('thumbnail_url')->nullable();
             $table->timestamps();
         });
     }

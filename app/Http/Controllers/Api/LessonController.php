@@ -28,9 +28,14 @@ class LessonController extends Controller
      * */
     public function store(Request $request)
     {
-        $request->user()->lessons()->create(
-            $request->only('title', 'body')
-        );
+        $thumbnail = $request->file('thumbnail')
+                             ->store('/public');
+
+        $request->user()->lessons()->create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'thumbnail_url' => $thumbnail
+        ]);
 
         return $this->lesson_responses->setStatusCode(Response::HTTP_CREATED)
                                       ->message('Lesson successfully created');
