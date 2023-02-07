@@ -52,4 +52,13 @@ class AuthController extends Controller
 
         return ['token' => $token->plainTextToken];
     }
+
+    public function token_revoke()
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'token was revoked'
+        ];
+    }
 }
