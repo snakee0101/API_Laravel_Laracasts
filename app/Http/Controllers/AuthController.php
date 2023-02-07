@@ -41,9 +41,14 @@ class AuthController extends Controller
      * */
     public function token()
     {
-        auth()->user()->tokens()->delete();
-
         $token = auth()->user()->createToken('api token');
+
+        return ['token' => $token->plainTextToken];
+    }
+
+    public function temp_token()
+    {
+        $token = auth()->user()->createToken('api token', expiresAt: now()->addMinutes(40));
 
         return ['token' => $token->plainTextToken];
     }
