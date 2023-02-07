@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class LessonResource extends JsonResource
 {
@@ -11,7 +12,8 @@ class LessonResource extends JsonResource
         return [
             'title' => $this->title,
             'body' => $this->body,
-            'is_active' => $this->some_boolean,
+            'thumbnail_url' => $this->thumbnail_url ? url(Storage::url($this->thumbnail_url))
+                                                    : null,
         ];
     }
 }
