@@ -30,3 +30,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/token', [AuthController::class, 'token']);
+Route::get('/temp_token', [AuthController::class, 'temp_token']);
